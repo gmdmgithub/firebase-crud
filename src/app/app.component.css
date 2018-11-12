@@ -1,0 +1,15 @@
+main
+{
+    width: 80%;
+    margin: 0 auto;
+}
+ul li
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    margin-bottom: 5px;
+}
+.new-item label{
+    display: block;
+}

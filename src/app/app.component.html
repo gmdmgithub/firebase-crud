@@ -4,12 +4,16 @@
     Welcome to {{ title }}!
   </h1>
  </div>
-
-<input type="text" (keyup.enter)="addProject(project)" #project>
-
+<main>
+  <div class="new-item">
+    <label for="add">Add new item (Enter)</label>
+    <input class="add" name="add" type="text" (keyup.enter)="addProject(project)" #project>
+  </div>
 <ul>
   <li *ngFor="let project of projects$ | async">
-    {{ project.name }}
+    {{ project.name }} 
+    <button (click)="update(project.key, project)">Edit</button>
+    <button (click)="delete(project.key)">Delete</button>
   </li>
 </ul>
 <ul *ngIf="project$ |async as project">
@@ -17,5 +21,5 @@
   <li>{{ project.description }}</li>
   <li>{{ project.value }}</li>
 </ul>
-
+</main>
 
