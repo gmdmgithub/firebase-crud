@@ -5,7 +5,7 @@
   </h1>
  </div>
 <ul>
-  <li *ngFor="let project of projects">
+  <li *ngFor="let project of projects$ | async">
     {{ project.name }}
   </li>
 </ul>
