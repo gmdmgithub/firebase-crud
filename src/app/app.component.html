@@ -4,6 +4,9 @@
     Welcome to {{ title }}!
   </h1>
  </div>
+
+<input type="text" (keyup.enter)="addProject(project)" #project>
+
 <ul>
   <li *ngFor="let project of projects$ | async">
     {{ project.name }}
