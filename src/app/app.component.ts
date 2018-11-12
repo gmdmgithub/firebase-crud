@@ -9,11 +9,13 @@ import { Subscription, Observable } from 'rxjs';
 export class AppComponent {
   
   projects$;
+  project$;
   title = 'Hi first app with firebase backend';
 
   constructor(db: AngularFireDatabase) {
     // console.log(environment.firebase);
 
     this.projects$ = db.list('/projects').valueChanges();
+    this.project$ = db.object('projects/test2').valueChanges();
   }
 }

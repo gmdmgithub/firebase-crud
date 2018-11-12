@@ -9,4 +9,10 @@
     {{ project.name }}
   </li>
 </ul>
+<ul *ngIf="project$ |async as project">
+  <li>{{ project.name }}</li>
+  <li>{{ project.description }}</li>
+  <li>{{ project.value }}</li>
+</ul>
+
 
