@@ -9,29 +9,31 @@ import { map } from "rxjs/operators";
 })
 export class AppComponent {
   projects$: Observable<any[]>;
-  project$;//just as an example
-  title = "Hi first app with firebase backend";
+  project$; //just as an example
+  title = "the first trial of app with firebase backend";
   projectCollection: AngularFireList<any>;
 
   constructor(db: AngularFireDatabase) {
-    
     this.projectCollection = db.list("projects");
-    
-    this.projects$ = db.list("/projects").snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    );
-    
+
+    this.projects$ = db
+      .list("/projects")
+      .snapshotChanges()
+      .pipe(
+        map(changes =>
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+        )
+      );
+
     //to test getting specific value
     this.project$ = db.object("projects/test2").valueChanges();
-    
   }
 
   addProject(project: HTMLInputElement) {
     const proj = {
       name: project.value,
-      description: project.value + " description"
+      description: project.value + " description",
+      date: (new Date()).toJSON()
     };
     this.projectCollection.push(proj).then(_ => console.log("success", proj));
     project.value = "";
@@ -39,15 +41,19 @@ export class AppComponent {
 
   update(key, project: any) {
     const proj = {
-      name: 'new value',
+      name: "new value",
       description: project.name + " description"
     };
     console.log(key, proj);
-    
+    //set update whole document
     // this.projectCollection.set(key, proj);
-    this.projectCollection.update(key, {value: 1234});
+    this.projectCollection.update(key, { value: 1234 });
   }
-  delete(key){
+  delete(key) {
     this.projectCollection.remove(key);
+  }
+  deleteAll(){
+    console.log('cellection could be deleted - just uncomment');
+    //this.projectCollection.remove();
   }
 }

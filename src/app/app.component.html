@@ -16,10 +16,19 @@
     <button (click)="delete(project.key)">Delete</button>
   </li>
 </ul>
+<div style="text-align:center">
+  <h4>
+    Project details
+  </h4>
+</div>
 <ul *ngIf="project$ |async as project">
   <li>{{ project.name }}</li>
   <li>{{ project.description }}</li>
   <li>{{ project.value }}</li>
 </ul>
+
+<div class="delete-all new-item">
+   <button (click)="deleteAll()">Delete all</button>
+</div>
 </main>
 
