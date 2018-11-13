@@ -54,6 +54,9 @@ export class AppComponent {
   }
   deleteAll(){
     console.log('cellection could be deleted - just uncomment');
+    if(confirm('Delete all from the list?')){
+      alert('Forget about it ;-)');
+    }
     //this.projectCollection.remove();
   }
 }
